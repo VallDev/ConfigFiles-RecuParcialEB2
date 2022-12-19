@@ -2,7 +2,7 @@ eureka:
   client:
     enabled: true
 
-Server:
+server:
   port: 8092
 
 spring:
