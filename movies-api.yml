@@ -1,0 +1,52 @@
+server:
+  port: 8091
+
+spring:
+  application:
+    name: movies-api
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/moviesdb
+
+  main:
+    allow-circular-references: true
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak-provider:
+            issuer-uri: http://localhost:8082/realms/digitalmedia
+        registration:
+          api-movies-service:
+            provider: keycloak-provider
+            client-id: microservicios
+            client-secret: MrIcUH9dItoTs3OmgPn4L97ybYD50xvB
+            authorization-grant-type:
+            redirect-uri: http://localhost:8084/*
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure.include: beans, env, health, info, metrics, mappings
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  show-actuator: true
+  swagger-ui:
+    groups-order: DESC
+    disable-swagger-default-url: true
+
+app:
+  cors:
+    allowed-origins: http://localhost:3000
+
+
+
